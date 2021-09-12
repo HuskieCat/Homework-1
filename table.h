@@ -12,8 +12,11 @@
 template <typename T>
 class Table
 {
+    //Output
     friend ostream& operator<<(ostream&, const Table<T>&);
 
+    //Arithmetic operations
+    friend Table<T>& operator+(const Table<T>&, const int&);
 
     public:
         Table(int = 2, int = 5);
@@ -24,6 +27,9 @@ class Table
 
         get_rows();
         get_cols();
+
+        T& operator()(int, int);
+        Table<T>& operator()(int, int, int, int);
     private:
         int rowCount;
         int columnCount;

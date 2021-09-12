@@ -25,6 +25,21 @@ ostream& operator<<(ostream& out, const Table<T> table)
     return out;
 }
 
+template<typename T>
+Table<T>& operator+(const Table<T>& newTable, const int& value)
+{
+    Table<T> newTable2 = new T[newTable.rowCount][newTable.columnCount];
+    for(int row = 0; row < newTable2.rowCount; row++)
+    {
+        for(int column = 0; column < newTable2.columnCount)
+        {
+            newTable2[row][column] = value;
+        }
+    }
+
+    return newTable2;
+}
+
 template <typename T>
 Table<T>::Table(int row, int column)
 {
@@ -91,4 +106,44 @@ template <typename T>
 int Table<T>::get_cols()
 {
     return columnCount;
+}
+
+template <typename T>
+T& Table<T>::operator()(int row, int column)
+{
+    return pTable[row][column];
+}
+
+template <typename T>
+Table<T>& Table<T>::operator()(int row1, int column1, int row2, int column2)
+{
+    int newRowCount = abs(row1-row2);
+    int newColumnCount = abs(column1-column2);
+    Table<T> newTable(newRowCount, newColumnCount);
+
+    int biggerRow = row2;
+    int smallerRow = row1;
+    int biggerColumn = column2;
+    int smallerColumn = column1;
+
+    if(row1 > row2)
+    {
+        biggerRow = row1;
+        smallerRow = row2;
+    }
+    if(column1 > column2)
+    {
+        biggerColumn = column1;
+        smallerColumn = column2;
+    }
+
+    for(int row = smallerRow; row < biggerRow; row++)
+    {
+        for(int column = smallerColumn; column < biggerColumn; column++)
+        {
+            newTable[row-smallerRow][column-smallerColumn] = pTable[row][column]
+        }
+    }
+
+    return newTable;
 }
