@@ -80,3 +80,15 @@ Table<T>::~Table()
     rowCount = 0;
     columnCount = 0;
 }
+
+template <typename T>
+int Table<T>::get_rows()
+{
+    return rowCount;
+}
+
+template <typename T>
+int Table<T>::get_cols()
+{
+    return columnCount;
+}

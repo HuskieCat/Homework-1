@@ -21,6 +21,9 @@ class Table
         Table(Table&);
         Table& operator=(const Table&);
         ~Table();
+
+        get_rows();
+        get_cols();
     private:
         int rowCount;
         int columnCount;
