@@ -45,7 +45,7 @@ Table<T>::Table(const int row, const int column)
 {
     rowCount = row;
     columnCount = column;
-    pTable = new T[rowCount][columnCount];
+    pTable = new T[row][column];
 }
 
 template<typename T>
@@ -53,7 +53,7 @@ Table<T>::Table(const int dimensions)
 {
     rowCount = dimensions;
     columnCount = dimensions;
-    pTable = new T[rowCount][columnCount];
+    pTable = new T[dimensions][dimensions];
 }
 
 template<typename T>
