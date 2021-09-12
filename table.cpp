@@ -183,7 +183,7 @@ Table<T>& Table<T>::operator()(int row1, int column1, int row2, int column2)
     {
         for(int column = smallerColumn; column < biggerColumn; column++)
         {
-            newTable[row-smallerRow][column-smallerColumn] = pTable[row][column]
+            newTable[row-smallerRow][column-smallerColumn] = pTable[row][column];
         }
     }
 
