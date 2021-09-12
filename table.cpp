@@ -138,11 +138,11 @@ int Table<T>::get_cols()
 template<typename T>
 Table<T>& Table<T>::append_rows(const Table<T>& oldTable)
 {
-    Table<T> newTable = new T [oldTable.rowCount + rowCount]/*[oldTable.columnCount]*/;
+    Table<T> newTable = new T [oldTable.rowCount + rowCount];
     newTable.rowCount = oldTable.rowCount + rowCount;
     newTable.columnCount = oldTable.columnCount;
 
-    for(int row = 0; row < newTable.rowCount; row++)
+    /*for(int row = 0; row < newTable.rowCount; row++)
     {
         newTable[row] = new T [oldTable.columnCount];
         for(int column = 0; column < newTable.columnCount; column++)
@@ -152,7 +152,7 @@ Table<T>& Table<T>::append_rows(const Table<T>& oldTable)
             else
                 newTable[row][column] = oldTable[newTable.rowCount-row][column];
         }
-    }
+    }*/
 
     return newTable;
 }
@@ -160,11 +160,11 @@ Table<T>& Table<T>::append_rows(const Table<T>& oldTable)
 template<typename T>
 Table<T>& Table<T>::append_cols(const Table<T>& oldTable)
 {
-    Table<T> newTable = new T [oldTable.rowCount]/*[oldTable.columnCount + columnCount]*/;
+    Table<T> newTable = new T [oldTable.rowCount];
     newTable.rowCount = oldTable.rowCount;
     newTable.columnCount = oldTable.columnCount + columnCount;
 
-    for(int row = 0; row < newTable.rowCount; row++)
+    /*for(int row = 0; row < newTable.rowCount; row++)
     {
         newTable[row] = new T [oldTable.columnCount + columnCount];
         for(int column = 0; column < newTable.columnCount; column++)
@@ -174,7 +174,7 @@ Table<T>& Table<T>::append_cols(const Table<T>& oldTable)
             else
                 newTable[row][column] = oldTable[row][newTable.columnCount - column];
         }
-    }
+    }*/
 
     return newTable;
 }
