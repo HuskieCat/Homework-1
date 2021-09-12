@@ -9,9 +9,9 @@
 template<typename T>
 ostream& operator<<(ostream& out, const Table<T>& table)
 {
-    if(table.get_rows() == 0)
+    if(table.rowCount == 0)
         return out << "null";
-    else if(table.get_columns() == 0)
+    else if(table.columnCount == 0)
         return out << "null";
 
     for(int row = 0; row < table.rowCount; row++)
