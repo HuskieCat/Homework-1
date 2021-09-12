@@ -14,9 +14,9 @@ ostream& operator<<(ostream& out, const Table<T> table)
     else if(table.columnCount == 0)
         out << "∅";
 
-    for(int row = 0; row < newTable.rowCount; row++)
+    for(int row = 0; row < table.rowCount; row++)
     {
-        for(int column = 0; column < newTable.columnCount; column++)
+        for(int column = 0; column < table.columnCount; column++)
         {
             out << table[row][column];
         }
@@ -31,7 +31,7 @@ Table<T>& operator+(const Table<T>& newTable, const int& value)
     Table<T> newTable2 = new T[newTable.rowCount][newTable.columnCount];
     for(int row = 0; row < newTable2.rowCount; row++)
     {
-        for(int column = 0; column < newTable2.columnCount)
+        for(int column = 0; column < newTable2.columnCount; column++)
         {
             newTable2[row][column] = value;
         }
