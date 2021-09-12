@@ -20,7 +20,7 @@ class Table
     //Arithmetic operations
     //friend Table<T>& operator+(const Table<T>&, const int&);
 
-    Table<T> Table<T> operator+(const Table<T>&, const T&);
+    friend Table<T> Table<T> operator+(const Table<T>&, const T&);
 
     public:
         Table(int = 2, int = 5);
