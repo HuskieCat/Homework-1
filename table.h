@@ -20,7 +20,7 @@ class Table
     //Arithmetic operations
     //friend Table<T>& operator+(const Table<T>&, const int&);
 
-    friend Table<T> Table<T> operator+(const Table<T>&, const T&);
+    friend Table<T> operator+(const Table<T>&, const T&);
 
     public:
         Table(const int = 2, const int = 5);
@@ -40,7 +40,7 @@ class Table
     private:
         int rowCount;
         int columnCount;
-        T* pTable;
+        T** pTable;
 };
 
 #endif

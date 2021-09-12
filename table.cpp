@@ -45,7 +45,10 @@ Table<T>::Table(const int row, const int column)
 {
     rowCount = row;
     columnCount = column;
-    pTable = new T[row][column];
+    //pTable = new T[row][column];
+    pTable = new T*[row];
+    for(int i = 0; i < row; i++)
+        row[i] = new T[column];
 }
 
 template<typename T>
