@@ -18,7 +18,9 @@ class Table
     friend ostream& operator<<(ostream&, const Table<T>&);
 
     //Arithmetic operations
-    friend Table<T>& operator+(const Table<T>&, const int&);
+    //friend Table<T>& operator+(const Table<T>&, const int&);
+
+    Table<T> Table<T> operator+(const Table<T>&, const T&);
 
     public:
         Table(int = 2, int = 5);

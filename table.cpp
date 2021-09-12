@@ -26,7 +26,7 @@ ostream& operator<<(ostream& out, const Table<T> table)
 }
 
 template<typename T>
-Table<T>& operator+(const Table<T>& newTable, const int& value)
+Table<T> operator+(const Table<T>& newTable, const T& value)
 {
     Table<T> newTable2 = new T[newTable.rowCount][newTable.columnCount];
     for(int row = 0; row < newTable2.rowCount; row++)
