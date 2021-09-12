@@ -40,7 +40,7 @@ Table<T>& operator+(const Table<T>& newTable, const int& value)
     return newTable2;
 }
 
-template <typename T>
+template<typename T>
 Table<T>::Table(int row, int column)
 {
     rowCount = row;
@@ -48,7 +48,7 @@ Table<T>::Table(int row, int column)
     pTable = new T[row][column];
 }
 
-template <typename T>
+template<typename T>
 Table<T>::Table(int dimensions)
 {
     rowCount = dimensions;
@@ -56,7 +56,7 @@ Table<T>::Table(int dimensions)
     pTable = new T[dimensions][dimensions];
 }
 
-template <typename T>
+template<typename T>
 Table<T>::Table(Table<T>& newTable)
 {
     pTable = new T[newTable.rowCount][newTable.columnCount];
@@ -68,7 +68,7 @@ Table<T>::Table(Table<T>& newTable)
     columnCount = newTable.columnCount;
 }
 
-template <typename T>
+template<typename T>
 Table<T>& Table<T>::operator=(const Table<T>& newTable)
 {
     //Erase the table
@@ -86,7 +86,7 @@ Table<T>& Table<T>::operator=(const Table<T>& newTable)
     return *this;
 }
 
-template <typename T>
+template<typename T>
 Table<T>::~Table()
 {
     for(int row = 0; row < rowCount; row++)
@@ -96,25 +96,67 @@ Table<T>::~Table()
     columnCount = 0;
 }
 
-template <typename T>
+template<typename T>
 int Table<T>::get_rows()
 {
     return rowCount;
 }
 
-template <typename T>
+template<typename T>
 int Table<T>::get_cols()
 {
     return columnCount;
 }
 
-template <typename T>
+template<typename T>
+Table<T>& Table<T>::append_rows(const Table<T>& oldTable)
+{
+    Table<T> newTable = oldTable[oldTable.rowCount + rowCount][oldTable.columnCount];
+    newTable.rowCount = oldTable.rowCount + rowCount;
+    newTable.columnCount = oldTable.columnCount;
+
+    for(int row = 0; row < newTable.rowCount; row++)
+    {
+        for(int column = 0; column < newTable.columnCount; column++)
+        {
+            if(row < rowCount)
+                newTable[row][column] = pTable[row][column];
+            else
+                newTable[row][column] = oldTable[newTable.rowCount-row][column];
+        }
+    }
+
+    return newTable;
+}
+
+template<typename T>
+Table<T>& Table<T>::append_cols(const Table<T>& oldTable)
+{
+    Table<T> newTable = oldTable[oldTable.rowCount][oldTable.columnCount + columnCount];
+    newTable.rowCount = oldTable.rowCount;
+    newTable.columnCount = oldTable.columnCount + columnCount;
+
+    for(int row = 0; row < newTable.rowCount; row++)
+    {
+        for(int column = 0; column < newTable.columnCount; column++)
+        {
+            if(column < columnCount)
+                newTable[row][column] = pTable[row][column];
+            else
+                newTable[row][column] = oldTable[row][newTable.columnCount - column];
+        }
+    }
+
+    return newTable;
+}
+
+template<typename T>
 T& Table<T>::operator()(int row, int column)
 {
     return pTable[row][column];
 }
 
-template <typename T>
+template<typename T>
 Table<T>& Table<T>::operator()(int row1, int column1, int row2, int column2)
 {
     int newRowCount = abs(row1-row2);

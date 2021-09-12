@@ -25,8 +25,11 @@ class Table
         Table& operator=(const Table&);
         ~Table();
 
-        get_rows();
-        get_cols();
+        int get_rows();
+        int get_cols();
+
+        Table<T>& append_rows(const Table<T>&);
+        Table<T>& append_cols(const Table<T>&);
 
         T& operator()(int, int);
         Table<T>& operator()(int, int, int, int);
