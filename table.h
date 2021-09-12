@@ -23,8 +23,8 @@ class Table
     friend Table<T> Table<T> operator+(const Table<T>&, const T&);
 
     public:
-        Table(int = 2, int = 5);
-        Table(int = 2);
+        Table(const int = 2, const int = 5);
+        Table(const int = 2);
         Table(Table&);
         Table& operator=(const Table&);
         ~Table();

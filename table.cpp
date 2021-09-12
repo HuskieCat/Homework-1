@@ -41,7 +41,7 @@ Table<T> operator+(const Table<T>& newTable, const T& value)
 }
 
 template<typename T>
-Table<T>::Table(int row, int column)
+Table<T>::Table(const int row, const int column)
 {
     rowCount = row;
     columnCount = column;
@@ -49,7 +49,7 @@ Table<T>::Table(int row, int column)
 }
 
 template<typename T>
-Table<T>::Table(int dimensions)
+Table<T>::Table(const int dimensions)
 {
     rowCount = dimensions;
     columnCount = dimensions;
