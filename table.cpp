@@ -7,18 +7,18 @@
 #include "table.h"
 
 template<typename T>
-ostream& operator<<(ostream& out, const Table<T> table)
+ostream& operator<<(ostream& out, const Table<T>& table)
 {
-    if(table.rowCount == 0)
-        out << "∅";
-    else if(table.columnCount == 0)
-        out << "∅";
+    if(table.get_rows() == 0)
+        return out << "null";
+    else if(table.get_columns() == 0)
+        return out << "null";
 
     for(int row = 0; row < table.rowCount; row++)
     {
         for(int column = 0; column < table.columnCount; column++)
         {
-            out << table[row][column];
+            out << table(row, column);
         }
         out<<endl;
     }
@@ -28,9 +28,10 @@ ostream& operator<<(ostream& out, const Table<T> table)
 template<typename T>
 Table<T> operator+(const Table<T>& newTable, const T& value)
 {
-    Table<T> newTable2 = new T[newTable.rowCount][newTable.columnCount];
+    Table<T> newTable2 = new T*[newTable.rowCount]/*[newTable.columnCount]*/;
     for(int row = 0; row < newTable2.rowCount; row++)
     {
+        newTable2[row] = new T[newTable.columnCount];
         for(int column = 0; column < newTable2.columnCount; column++)
         {
             newTable2[row][column] = value;
@@ -64,7 +65,7 @@ Table<T>::Table(const int dimensions)
 template<typename T>
 Table<T>::Table(Table<T>& newTable)
 {
-    pTable = new T[newTable.rowCount];
+    pTable = new T*[newTable.rowCount];
     for(int row = 0; row < newTable.rowCount; row++)
     {
         pTable[row] = new T[newTable.columnCount];
@@ -99,7 +100,7 @@ Table<T>& Table<T>::operator=(const Table<T>& newTable)
         for(int column = 0; column < newTable.columnCount; column++)
             pTable[row][column] = newTable.pTable[row][column];*/
 
-    pTable = new T[newTable.rowCount];
+    pTable = new T*[newTable.rowCount];
     for(int row = 0; row < newTable.rowCount; row++)
     {
         pTable[row] = new T[newTable.columnCount];
@@ -124,21 +125,21 @@ Table<T>::~Table()
 }
 
 template<typename T>
-int Table<T>::get_rows()
+int const Table<T>::get_rows()
 {
     return rowCount;
 }
 
 template<typename T>
-int Table<T>::get_cols()
+int const Table<T>::get_cols()
 {
     return columnCount;
 }
 
 template<typename T>
-Table<T>& Table<T>::append_rows(const Table<T>& oldTable)
+Table<T>* Table<T>::append_rows(const Table<T>& oldTable)
 {
-    Table<T> newTable = new T [oldTable.rowCount + rowCount];
+    Table<T> newTable = new T *[oldTable.rowCount + rowCount];
     newTable.rowCount = oldTable.rowCount + rowCount;
     newTable.columnCount = oldTable.columnCount;
 
@@ -154,13 +155,13 @@ Table<T>& Table<T>::append_rows(const Table<T>& oldTable)
         }
     }*/
 
-    return newTable;
+    return *newTable;
 }
 
 template<typename T>
-Table<T>& Table<T>::append_cols(const Table<T>& oldTable)
+Table<T>* Table<T>::append_cols(const Table<T>& oldTable)
 {
-    Table<T> newTable = new T [oldTable.rowCount];
+    Table<T> newTable = new T *[oldTable.rowCount];
     newTable.rowCount = oldTable.rowCount;
     newTable.columnCount = oldTable.columnCount + columnCount;
 
@@ -212,7 +213,7 @@ Table<T>& Table<T>::operator()(int row1, int column1, int row2, int column2)
     {
         for(int column = smallerColumn; column < biggerColumn; column++)
         {
-            newTable[row-smallerRow][column-smallerColumn] = pTable[row][column];
+            newTable[row-smallerRow][column-smallerColumn] = &pTable[row][column];
         }
     }
 
