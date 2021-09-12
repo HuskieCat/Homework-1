@@ -160,7 +160,7 @@ Table<T>& Table<T>::append_rows(const Table<T>& oldTable)
 template<typename T>
 Table<T>& Table<T>::append_cols(const Table<T>& oldTable)
 {
-    Table<T> newTable = oldTable[oldTable.rowCount]/*[oldTable.columnCount + columnCount]*/;
+    Table<T> newTable = new T [oldTable.rowCount]/*[oldTable.columnCount + columnCount]*/;
     newTable.rowCount = oldTable.rowCount;
     newTable.columnCount = oldTable.columnCount + columnCount;
 
