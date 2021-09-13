@@ -16,7 +16,9 @@ template<typename T>
 class Table
 {
     //Output
-    friend ostream& operator<<(ostream&, const Table<T>&);
+    template <typename S>
+    friend ostream& operator<<(ostream&, const Table<S>&);
+    
 
     friend Table<T> operator+(const Table<T>&, const T&);
 

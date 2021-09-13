@@ -8,8 +8,8 @@
 #include <iostream>
 #include "table.h"
 
-template<typename T>
-ostream& operator<<(ostream& out, const Table<T>& table)
+template<typename S>
+ostream& operator<<(ostream& out, const Table<S>& table)
 {
     if(table.rowCount == 0)
         return out << "null";
@@ -20,7 +20,8 @@ ostream& operator<<(ostream& out, const Table<T>& table)
     {
         for(int column = 0; column < table.columnCount; column++)
         {
-            out << table(row, column);
+            //out << table[row][column];
+            out << "bacon";
         }
         out<<endl;
     }
