@@ -4,6 +4,8 @@
  * Author: Bradley Henderson
 */
 
+#include <cstdlib>
+#include <iostream>
 #include "table.h"
 
 template<typename T>
@@ -125,13 +127,13 @@ Table<T>::~Table()
 }
 
 template<typename T>
-int const Table<T>::get_rows()
+int Table<T>::get_rows()
 {
     return rowCount;
 }
 
 template<typename T>
-int const Table<T>::get_cols()
+int Table<T>::get_cols()
 {
     return columnCount;
 }

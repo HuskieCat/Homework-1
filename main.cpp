@@ -26,7 +26,8 @@ int main()
     Table<int> t(ROWS, COLS);
     randomize(t, 10, 99);
     //cout << setw(WIDTH) << t << endl;
-    cout << t <<endl;
+    //cout << t <<endl;
+    cout << t;
 
     PrintInFile(t);
 

@@ -7,6 +7,7 @@
 #ifndef TABLE_H_INCLUDED
 #define TABLE_H_INCLUDED
 
+#include <cstdlib>
 #include <iostream>
 
 using namespace std;
@@ -15,7 +16,7 @@ template <typename T>
 class Table
 {
     //Output
-    friend ostream& operator<<(ostream& out, const Table<T>* table);
+    friend ostream& operator<<(ostream&, const Table<T>&);
 
     friend Table<T> operator+(const Table<T>&, const T&);
 
@@ -26,8 +27,8 @@ class Table
         Table& operator=(const Table&);
         ~Table();
 
-        int const get_rows();
-        int const get_cols();
+        int get_rows();
+        int get_cols();
 
         Table<T>* append_rows(const Table<T>&);
         Table<T>* append_cols(const Table<T>&);
