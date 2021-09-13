@@ -1,2 +1,2 @@
 language = "cpp"
-run = "./table_tester"
+run = "clang++ main.cpp -o main"

@@ -12,7 +12,7 @@
 
 using namespace std;
 
-template <typename T>
+template<typename T>
 class Table
 {
     //Output
