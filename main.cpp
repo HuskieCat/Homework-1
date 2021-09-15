@@ -41,6 +41,7 @@ int main()
     }
     cout << t <<endl;
 
+    cout<<"Append Columns"<<endl;
     // append 3 columns filled with -1
     Table<int> t2(ROWS, 3);
     fill(t2, -1);
@@ -48,7 +49,13 @@ int main()
     //cout << setw(WIDTH) << t << endl;
     cout << t << endl;
 
-    //PrintInFile(t);
+    cout<<"Append Rows"<<endl;
+    // append 2 rows filled with -2
+    Table<int> t3(2, t.get_cols());
+    fill(t3, -2);
+    t = t.append_rows(t3);
+    //cout << setw(WIDTH) << t << endl;
+    cout << t << endl;
 
     cout << "--- End of Code ---\n";
 }
@@ -63,9 +70,12 @@ void randomize(Table<int>& t, int lo, int hi) {
 }
 
 // fills table with val
-void fill(Table<int>& t, int val) {
-    for (int i = 0; i < t.get_rows(); i++) {
-        for (int j = 0; j < t.get_cols(); j++) {
+void fill(Table<int>& t, int val) 
+{
+    for (int i = 0; i < t.get_rows(); i++) 
+    {
+        for (int j = 0; j < t.get_cols(); j++) 
+        {
             t(i, j) = val;
         }
     }

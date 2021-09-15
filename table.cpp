@@ -145,47 +145,49 @@ int Table<T>::get_cols()
 template<typename T>
 Table<T>& Table<T>::append_rows(const Table<T>& oldTable)
 {
-    Table<T> newTable = new T *[oldTable.rowCount + rowCount];
-    newTable.rowCount = oldTable.rowCount + rowCount;
-    newTable.columnCount = oldTable.columnCount;
+  Table<T> newTable(rowCount + oldTable.rowCount, columnCount);
 
-    /*for(int row = 0; row < newTable.rowCount; row++)
+  for(int row = 0; row < newTable.rowCount; row++)
+  {
+    for(int column = 0; column < newTable.columnCount; column++)
     {
-        newTable[row] = new T [oldTable.columnCount];
-        for(int column = 0; column < newTable.columnCount; column++)
-        {
-            if(row < rowCount)
-                newTable[row][column] = pTable[row][column];
-            else
-                newTable[row][column] = oldTable[newTable.rowCount-row][column];
-        }
-    }*/
+      if(row < rowCount)
+      {
+        newTable[row][column] = pTable[row][column];
+      }
+      else
+      {
+        newTable[row][column] = oldTable.pTable[row-oldTable.rowCount][column];
+      }
+    }
+  }
 
-    return newTable;
+  return newTable;
 }
 
 template<typename T>
-Table<T>& Table<T>::append_cols(const Table<T>& oldTable)
+Table<T> Table<T>::append_cols(const Table<T>& oldTable)
 {
-    Table<T> newTable = new T *[oldTable.rowCount];
-    newTable.rowCount = oldTable.rowCount;
-    newTable.columnCount = oldTable.columnCount + columnCount;
+  Table<T> newTable(rowCount, columnCount + oldTable.columnCount);
 
-    
-
-    /*for(int row = 0; row < newTable.rowCount; row++)
+  for(int row = 0; row < newTable.rowCount; row++)
+  {
+    int secondIndex = 0;
+    for(int column = 0; column < newTable.columnCount; column++)
     {
-        newTable[row] = new T [oldTable.columnCount + columnCount];
-        for(int column = 0; column < newTable.columnCount; column++)
-        {
-            if(column < columnCount)
-                newTable[row][column] = pTable[row][column];
-            else
-                newTable[row][column] = oldTable[row][newTable.columnCount - column];
-        }
-    }*/
+      if(column < columnCount)
+      {
+        newTable.pTable[row][column] = pTable[row][column];
+      }
+      else
+      {
+        newTable.pTable[row][column] = oldTable.pTable[row][secondIndex];
+        secondIndex++;
+      }
+    }
+  }
 
-    return newTable;
+  return newTable;
 }
 
 template<typename T>
