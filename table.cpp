@@ -202,9 +202,11 @@ T& Table<T>::operator()(int row, int column)
 template<typename T>
 Table<T> Table<T>::operator()(int row1, int column1, int row2, int column2)
 {
-    int newRowCount = abs(row1-row2);
-    int newColumnCount = abs(column1-column2);
+    int newRowCount = abs(row1-row2)+1;
+    int newColumnCount = abs(column1-column2)+1;
     Table<T> newTable(newRowCount, newColumnCount);
+
+    cout<<"New Table size "<<newRowCount<<":"<<newColumnCount<<endl;
 
     int biggerRow = row2;
     int smallerRow = row1;
@@ -222,11 +224,11 @@ Table<T> Table<T>::operator()(int row1, int column1, int row2, int column2)
         smallerColumn = column2;
     }
 
-    for(int row = smallerRow; row < biggerRow; row++)
+    for(int row = smallerRow; row < biggerRow+1; row++)
     {
-        for(int column = smallerColumn; column < biggerColumn; column++)
+        for(int column = smallerColumn; column < biggerColumn+1; column++)
         {
-            newTable.pTable[row-smallerRow][column-smallerColumn] = pTable[row][column];
+          newTable.pTable[row-smallerRow][column-smallerColumn] = pTable[row][column];
         }
     }
 

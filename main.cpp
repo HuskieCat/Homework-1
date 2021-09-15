@@ -57,10 +57,17 @@ int main()
     //cout << setw(WIDTH) << t << endl;
     cout << t << endl;
 
+    cout << "Subtable"<<endl;
     // extract a subtable
     t = t(3, 5, 5, 7);
-    cout << setw(WIDTH) << t << endl;
+    //cout << setw(WIDTH) << t << endl;
     cout << t << endl;
+
+
+    cout<<"Squared Entries"<<endl;
+    // square the entries in the table
+    //cout << setw(WIDTH) << t + square << endl;
+    cout << t + square << endl;
 
     cout << "--- End of Code ---\n";
 }
