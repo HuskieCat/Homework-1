@@ -8,9 +8,12 @@
 #include <iostream>
 #include "table.h"
 
-template<typename S>
-ostream& operator<<(ostream& out, const Table<S>& table)
+template<typename T>
+ostream& operator<<(ostream& out, const Table<T>& table)
 {
+    //out.width();
+    int width = out.width();
+
     if(table.rowCount == 0)
         return out << "null";
     else if(table.columnCount == 0)
@@ -20,8 +23,7 @@ ostream& operator<<(ostream& out, const Table<S>& table)
     {
         for(int column = 0; column < table.columnCount; column++)
         {
-            //out << table[row][column];
-            out << "bacon";
+            out<<table.pTable[row][column]<<" ";
         }
         out<<endl;
     }
@@ -140,7 +142,7 @@ int Table<T>::get_cols()
 }
 
 template<typename T>
-Table<T>* Table<T>::append_rows(const Table<T>& oldTable)
+Table<T>& Table<T>::append_rows(const Table<T>& oldTable)
 {
     Table<T> newTable = new T *[oldTable.rowCount + rowCount];
     newTable.rowCount = oldTable.rowCount + rowCount;
@@ -158,15 +160,17 @@ Table<T>* Table<T>::append_rows(const Table<T>& oldTable)
         }
     }*/
 
-    return *newTable;
+    return newTable;
 }
 
 template<typename T>
-Table<T>* Table<T>::append_cols(const Table<T>& oldTable)
+Table<T>& Table<T>::append_cols(const Table<T>& oldTable)
 {
     Table<T> newTable = new T *[oldTable.rowCount];
     newTable.rowCount = oldTable.rowCount;
     newTable.columnCount = oldTable.columnCount + columnCount;
+
+    
 
     /*for(int row = 0; row < newTable.rowCount; row++)
     {

@@ -26,10 +26,29 @@ int main()
     Table<int> t(ROWS, COLS);
     randomize(t, 10, 99);
     //cout << setw(WIDTH) << t << endl;
-    //cout << t <<endl;
-    cout << t;
+    cout << "Print table" <<endl;
+    cout << t <<endl;
+    //cout << t;
 
-    PrintInFile(t);
+    cout << "Replace odd number" << endl;
+    // replace odd numbers in table with zero
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            if (t(i, j) % 2 == 1) {
+                t(i, j) = 0;
+            }
+        }
+    }
+    cout << t <<endl;
+
+    // append 3 columns filled with -1
+    Table<int> t2(ROWS, 3);
+    fill(t2, -1);
+    t = t.append_cols(t2);
+    //cout << setw(WIDTH) << t << endl;
+    cout << t << endl;
+
+    //PrintInFile(t);
 
     cout << "--- End of Code ---\n";
 }

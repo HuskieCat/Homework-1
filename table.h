@@ -19,7 +19,6 @@ class Table
     template <typename S>
     friend ostream& operator<<(ostream&, const Table<S>&);
     
-
     friend Table<T> operator+(const Table<T>&, const T&);
 
     public:
@@ -32,8 +31,8 @@ class Table
         int get_rows();
         int get_cols();
 
-        Table<T>* append_rows(const Table<T>&);
-        Table<T>* append_cols(const Table<T>&);
+        Table<T>& append_rows(const Table<T>&);
+        Table<T>& append_cols(const Table<T>&);
 
         T& operator()(int, int);
         Table<T>& operator()(int, int, int, int);

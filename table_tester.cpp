@@ -55,7 +55,7 @@ int main() {
     cout << setw(WIDTH) << t << endl;
 
     // square the entries in the table
-    //cout << setw(WIDTH) << t + square << endl;
+    cout << setw(WIDTH) << t + square << endl;
     return 0;
 }
 
