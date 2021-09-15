@@ -143,23 +143,26 @@ int Table<T>::get_cols()
 }
 
 template<typename T>
-Table<T>& Table<T>::append_rows(const Table<T>& oldTable)
+Table<T> Table<T>::append_rows(const Table<T>& oldTable)
 {
   Table<T> newTable(rowCount + oldTable.rowCount, columnCount);
 
+  int secondIndex = 0;
   for(int row = 0; row < newTable.rowCount; row++)
   {
     for(int column = 0; column < newTable.columnCount; column++)
     {
       if(row < rowCount)
       {
-        newTable[row][column] = pTable[row][column];
+        newTable.pTable[row][column] = pTable[row][column];
       }
       else
       {
-        newTable[row][column] = oldTable.pTable[row-oldTable.rowCount][column];
+        newTable.pTable[row][column] = oldTable.pTable[secondIndex][column];
       }
     }
+    if(row > rowCount)
+      secondIndex++;
   }
 
   return newTable;
@@ -197,7 +200,7 @@ T& Table<T>::operator()(int row, int column)
 }
 
 template<typename T>
-Table<T>& Table<T>::operator()(int row1, int column1, int row2, int column2)
+Table<T> Table<T>::operator()(int row1, int column1, int row2, int column2)
 {
     int newRowCount = abs(row1-row2);
     int newColumnCount = abs(column1-column2);
@@ -223,7 +226,7 @@ Table<T>& Table<T>::operator()(int row1, int column1, int row2, int column2)
     {
         for(int column = smallerColumn; column < biggerColumn; column++)
         {
-            newTable[row-smallerRow][column-smallerColumn] = &pTable[row][column];
+            newTable.pTable[row-smallerRow][column-smallerColumn] = pTable[row][column];
         }
     }
 

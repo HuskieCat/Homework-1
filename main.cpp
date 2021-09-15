@@ -57,6 +57,11 @@ int main()
     //cout << setw(WIDTH) << t << endl;
     cout << t << endl;
 
+    // extract a subtable
+    t = t(3, 5, 5, 7);
+    cout << setw(WIDTH) << t << endl;
+    cout << t << endl;
+
     cout << "--- End of Code ---\n";
 }
 
