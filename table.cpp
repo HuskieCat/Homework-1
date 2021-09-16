@@ -12,7 +12,7 @@ template<typename T>
 ostream& operator<<(ostream& out, const Table<T>& table)
 {
     //out.width();
-    const int width = out.width();
+    int width = out.width();
 
     if(table.rowCount == 0)
         return out << "null";
@@ -23,14 +23,14 @@ ostream& operator<<(ostream& out, const Table<T>& table)
     {
         for(int column = 0; column < table.columnCount; column++)
         {
-            out << setw(width) << table.pTable[row][column]<<" ";
+            out<<table.pTable[row][column]<<" "<<setw(width);
         }
         out<<endl;
     }
     return out;
 }
 
-/*template<typename T>
+template<typename T>
 Table<T> operator+(const Table<T>& oldTable, T (*f)(T))
 {
   Table<T> newTable(oldTable.rowCount, oldTable.columnCount);
@@ -39,12 +39,12 @@ Table<T> operator+(const Table<T>& oldTable, T (*f)(T))
   {
     for(int column = 0; column < newTable.columnCount; column++)
     {
-      newTable.qTable[row][column] = &f;
+        newTable.qTable[row][column] = f;
     }
   }
 
   return newTable;
-}*/
+}
 
 template<typename T>
 Table<T>::Table(const int row, const int column)
@@ -57,7 +57,7 @@ Table<T>::Table(const int row, const int column)
 }
 
 template<typename T>
-Table<T>::Table(int dimensions)
+Table<T>::Table(const int dimensions)
 {
     rowCount = dimensions;
     columnCount = dimensions;
