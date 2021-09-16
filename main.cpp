@@ -25,10 +25,8 @@ int main()
     const int WIDTH = 4;
     Table<int> t(ROWS, COLS);
     randomize(t, 10, 99);
-    //cout << setw(WIDTH) << t << endl;
+    cout << setw(WIDTH) << t << endl;
     cout << "Print table" <<endl;
-    cout << t <<endl;
-    //cout << t;
 
     cout << "Replace odd number" << endl;
     // replace odd numbers in table with zero
@@ -47,6 +45,7 @@ int main()
     fill(t2, -1);
     t = t.append_cols(t2);
     cout << setw(WIDTH) << t << endl;
+    //cout << t << endl;
 
     cout<<"Append Rows"<<endl;
     // append 2 rows filled with -2
@@ -54,17 +53,19 @@ int main()
     fill(t3, -2);
     t = t.append_rows(t3);
     cout << setw(WIDTH) << t << endl;
+    //cout << t << endl;
 
     cout << "Subtable"<<endl;
     // extract a subtable
     t = t(3, 5, 5, 7);
     cout << setw(WIDTH) << t << endl;
+    //cout << t << endl;
 
 
     cout<<"Squared Entries"<<endl;
     // square the entries in the table
     //cout << setw(WIDTH) << t + square << endl;
-    cout << t + square << endl;
+    //cout << t + square << endl;
 
     cout << "--- End of Code ---\n";
 }
