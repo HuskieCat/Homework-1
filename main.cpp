@@ -64,7 +64,7 @@ int main()
 
     cout<<"Squared Entries"<<endl;
     // square the entries in the table
-    //cout << setw(WIDTH) << t + square << endl;
+    cout << setw(WIDTH) << t + square << endl;
     //cout << t + square << endl;
 
     cout << "--- End of Code ---\n";

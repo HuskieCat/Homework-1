@@ -19,8 +19,7 @@ class Table
     template <typename S>
     friend ostream& operator<<(ostream&, const Table<S>&);
     
-    /*template <typename S>
-    friend Table<S> operator+(const Table<S>&, const T(*)(T));*/
+    friend Table<T> operator+(const Table<T>&, const T(*)(T));
 
     public:
         Table(int, int);

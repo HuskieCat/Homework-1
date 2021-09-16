@@ -30,7 +30,7 @@ ostream& operator<<(ostream& out, const Table<T>& table)
     return out;
 }
 
-/*template<typename T>
+template<typename T>
 Table<T> operator+(const Table<T>& oldTable, T (*f)(T))
 {
   Table<T> newTable(oldTable.rowCount, oldTable.columnCount);
@@ -39,12 +39,12 @@ Table<T> operator+(const Table<T>& oldTable, T (*f)(T))
   {
     for(int column = 0; column < newTable.columnCount; column++)
     {
-      newTable.qTable[row][column] = &f;
+      newTable.qTable[row][column] = f;
     }
   }
 
   return newTable;
-}*/
+}
 
 template<typename T>
 Table<T>::Table(const int row, const int column)
