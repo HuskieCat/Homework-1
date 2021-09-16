@@ -23,7 +23,7 @@ ostream& operator<<(ostream& out, const Table<T>& table)
     {
         for(int column = 0; column < table.columnCount; column++)
         {
-            out<<table.pTable[row][column]<<" "<<setw(width);
+            out<<setw(width)<<table.pTable[row][column];
         }
         out<<endl;
     }
