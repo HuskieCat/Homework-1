@@ -31,20 +31,19 @@ ostream& operator<<(ostream& out, const Table<T>& table)
 }
 
 template<typename T>
-Table<T> operator+(const Table<T>& newTable, const T& value)
+Table<T> operator+(const Table<T>& oldTable, T (*f)(T))
 {
-    Table<T> newTable2 = new T*[newTable.rowCount]
-    /*[newTable.columnCount]*/;
-    for(int row = 0; row < newTable2.rowCount; row++)
+    Table<T> newTable(oldTable.rowCount, oldTable.columnCount);
+
+    for(int row = 0; row < newTable.rowCount; row++)
     {
-        newTable2[row] = new T[newTable.columnCount];
-        for(int column = 0; column < newTable2.columnCount; column++)
-        {
-            newTable2[row][column] = value;
-        }
+      for(int column = 0; column < newTable.columnCount; column++)
+      {
+        newTable.qTable[row][column] = T;
+      }
     }
 
-    return newTable2;
+    return newTable;
 }
 
 template<typename T>
@@ -52,7 +51,6 @@ Table<T>::Table(const int row, const int column)
 {
     rowCount = row;
     columnCount = column;
-    //pTable = new T[row][column];
     pTable = new T*[row];
     for(int i = 0; i < row; i++)
         pTable[i] = new T[column];
@@ -81,13 +79,6 @@ Table<T>::Table(Table<T>& newTable)
         }
     }
 
-
-
-    /*pTable = new T[newTable.rowCount][newTable.columnCount];
-    for(int row = 0; row < newTable.rowCount; row++)
-        for(int column = 0; column < newTable.columnCount; column++)
-            pTable[row][column] = newTable.pTable[row][column];*/
-
     rowCount = newTable.rowCount;
     columnCount = newTable.columnCount;
 }
@@ -99,12 +90,6 @@ Table<T>& Table<T>::operator=(const Table<T>& newTable)
     for(int row = 0; row < rowCount; row++)
         delete[] pTable[row];
     delete[] pTable;
-
-    //Make new table and copy
-    /*pTable = new T[newTable.rowCount][newTable.columnCount];
-    for(int row = 0; row < newTable.rowCount; row++)
-        for(int column = 0; column < newTable.columnCount; column++)
-            pTable[row][column] = newTable.pTable[row][column];*/
 
     pTable = new T*[newTable.rowCount];
     for(int row = 0; row < newTable.rowCount; row++)
