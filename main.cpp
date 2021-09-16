@@ -25,10 +25,8 @@ int main()
     const int WIDTH = 4;
     Table<int> t(ROWS, COLS);
     randomize(t, 10, 99);
-    //cout << setw(WIDTH) << t << endl;
+    cout << setw(WIDTH) << t << endl;
     cout << "Print table" <<endl;
-    cout << t <<endl;
-    //cout << t;
 
     cout << "Replace odd number" << endl;
     // replace odd numbers in table with zero
@@ -67,7 +65,7 @@ int main()
     cout<<"Squared Entries"<<endl;
     // square the entries in the table
     //cout << setw(WIDTH) << t + square << endl;
-    cout << t + square << endl;
+    //cout << t + square << endl;
 
     cout << "--- End of Code ---\n";
 }
